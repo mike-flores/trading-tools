@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/trading-tools/static/css/main.d1b05096.chunk.css",
-    "main.js": "/trading-tools/static/js/main.3f5df46f.chunk.js",
-    "main.js.map": "/trading-tools/static/js/main.3f5df46f.chunk.js.map",
+    "main.js": "/trading-tools/static/js/main.e5269e20.chunk.js",
+    "main.js.map": "/trading-tools/static/js/main.e5269e20.chunk.js.map",
     "runtime-main.js": "/trading-tools/static/js/runtime-main.18c7c20e.js",
     "runtime-main.js.map": "/trading-tools/static/js/runtime-main.18c7c20e.js.map",
     "static/css/2.8ef06729.chunk.css": "/trading-tools/static/css/2.8ef06729.chunk.css",
     "static/js/2.bc8d10b1.chunk.js": "/trading-tools/static/js/2.bc8d10b1.chunk.js",
     "static/js/2.bc8d10b1.chunk.js.map": "/trading-tools/static/js/2.bc8d10b1.chunk.js.map",
     "index.html": "/trading-tools/index.html",
-    "precache-manifest.e113cc36a8f6c9f33d32608f9e7884fc.js": "/trading-tools/precache-manifest.e113cc36a8f6c9f33d32608f9e7884fc.js",
+    "precache-manifest.41df24cd55ab76d0e85820eed1411a93.js": "/trading-tools/precache-manifest.41df24cd55ab76d0e85820eed1411a93.js",
     "service-worker.js": "/trading-tools/service-worker.js",
     "static/css/2.8ef06729.chunk.css.map": "/trading-tools/static/css/2.8ef06729.chunk.css.map",
     "static/css/main.d1b05096.chunk.css.map": "/trading-tools/static/css/main.d1b05096.chunk.css.map",
@@ -21,6 +21,6 @@
     "static/css/2.8ef06729.chunk.css",
     "static/js/2.bc8d10b1.chunk.js",
     "static/css/main.d1b05096.chunk.css",
-    "static/js/main.3f5df46f.chunk.js"
+    "static/js/main.e5269e20.chunk.js"
   ]
 }
