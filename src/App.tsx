@@ -8,13 +8,13 @@ import { Button } from 'devextreme-react';
 
 import { Container, Row, Col } from 'react-bootstrap';
 
-const validationRules = {
-   bankRoll: [{ type: 'required', message: 'Bankroll is required.' }],
-   'risk%': [{ type: 'required', message: 'Risk % is required.' }],
-   entryPrice: [{ type: 'required', messsage: 'Entry Price is required.' }],
-   stopLoss: [{ type: 'required', message: 'Stop Loss is required.' }],
-   targetPrice: [{ type: 'required', message: 'Target Price is required.' }]
-};
+// const validationRules = {
+//    bankRoll: [{ type: 'required', message: 'Bankroll is required.' }],
+//    'risk%': [{ type: 'required', message: 'Risk % is required.' }],
+//    entryPrice: [{ type: 'required', messsage: 'Entry Price is required.' }],
+//    stopLoss: [{ type: 'required', message: 'Stop Loss is required.' }],
+//    targetPrice: [{ type: 'required', message: 'Target Price is required.' }]
+// };
 
 const getPercentDifference = (entryPrice: number, stopLoss: number) => {
    return ((entryPrice - stopLoss) / entryPrice) * 100;
@@ -48,21 +48,24 @@ const App = () => {
       setPositionSize(size);
    };
    return (
-      <Container>
-         <Row>
-            <Col style={{ backgroundColor: 'rgba(0,0,0,.03)' }} xs='12'>
+      <Container style={{ height: '100vh' }}>
+         <Row style={{ alignItems: 'center', height: '100%' }}>
+            <Col
+               style={{
+                  backgroundColor: 'rgba(0,0,0,.03)',
+                  paddingTop: '15px'
+               }}
+               xs='12'
+            >
                <Row>
                   <Col>
                      <Form formData={tradeData} labelLocation='top'>
-                        <Item dataField='tradeType' />
-                        <Item dataField='bankRoll' validationRules={validationRules.bankRoll} />
-                        <Item dataField='risk%' validationRules={validationRules['risk%']} />
-                        <Item dataField='entryPrice' validationRules={validationRules.entryPrice} />
-                        <Item dataField='stopLoss' validationRules={validationRules.stopLoss} />
-                        <Item
-                           dataField='targetPrice'
-                           validationRules={validationRules.targetPrice}
-                        />
+                        <Item dataField='tradeType' disabled />
+                        <Item dataField='bankRoll' />
+                        <Item dataField='risk%' />
+                        <Item dataField='entryPrice' />
+                        <Item dataField='stopLoss' />
+                        <Item dataField='targetPrice' disabled />
 
                         <div className='dx-fieldset'>
                            <Button id='button' text='Register' type='success' />
