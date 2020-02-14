@@ -1,0 +1,50 @@
+{
+   "env": {
+      "browser": true,
+      "es6": true
+   },
+   "extends": ["plugin:react/recommended", "airbnb", "prettier"],
+   "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+   },
+   "parser": "@typescript-eslint/parser",
+   "parserOptions": {
+      "ecmaFeatures": {
+         "jsx": true,
+         "tsx": true,
+         "js": true,
+         "ts": true
+      },
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+   },
+   "plugins": ["react", "@typescript-eslint", "prettier"],
+   "rules": {
+      "radix": 0,
+      "prettier/prettier": "error",
+      "jsx-a11y/label-has-associated-control": 0,
+      "import/no-extraneous-dependencies": 0,
+      "import/extensions": [
+         2,
+         {
+            "caseSensitive": false
+         }
+      ],
+      "react/jsx-indent": ["error", 3],
+      "react/jsx-indent-props": ["error", 3],
+      "react/jsx-filename-extension": [
+         1,
+         {
+            "extensions": [".ts", ".js", ".tsx", ".jsx"]
+         }
+      ]
+   },
+   "settings": {
+      "import/resolver": {
+         "node": {
+            "extensions": [".ts", ".js", ".tsx", ".jsx"]
+         }
+      }
+   }
+}

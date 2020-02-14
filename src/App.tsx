@@ -1,9 +1,99 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
+import 'devextreme/dist/css/dx.common.css';
+import 'devextreme/dist/css/dx.light.css';
+import Form, { Item } from 'devextreme-react/form';
+import { Button } from 'devextreme-react';
+
+import { Container, Row, Col } from 'react-bootstrap';
+
+const validationRules = {
+   bankRoll: [{ type: 'required', message: 'Bankroll is required.' }],
+   'risk%': [{ type: 'required', message: 'Risk % is required.' }],
+   entryPrice: [{ type: 'required', messsage: 'Entry Price is required.' }],
+   stopLoss: [{ type: 'required', message: 'Stop Loss is required.' }],
+   targetPrice: [{ type: 'required', message: 'Target Price is required.' }]
+};
+
+const getPercentDifference = (entryPrice: number, stopLoss: number) => {
+   return ((entryPrice - stopLoss) / entryPrice) * 100;
+};
+const getPositionSize = (bankRoll: number, riskPercent: number, percentDifference: number) => {
+   return (riskPercent / percentDifference) * bankRoll;
+};
+
 const App = () => {
-   return <div className="App">this is a test again</div>;
+   const tradeData = {
+      bankRoll: '',
+      tradeType: '',
+      'risk%': '',
+      entryPrice: '',
+      stopLoss: '',
+      targetPrice: ''
+   };
+
+   const [positionSize, setPositionSize] = useState(0);
+
+   const handleClick = () => {
+      const entry = parseInt(tradeData.entryPrice);
+      const stop = parseInt(tradeData.stopLoss);
+
+      const diff = getPercentDifference(entry, stop);
+
+      const bRoll = parseInt(tradeData.bankRoll);
+      const risk = parseInt(tradeData['risk%']);
+
+      const size = getPositionSize(bRoll, risk, diff);
+      setPositionSize(size);
+   };
+   return (
+      <Container>
+         <Row>
+            <Col style={{ backgroundColor: 'rgba(0,0,0,.03)' }} xs='12'>
+               <Row>
+                  <Col>
+                     <Form formData={tradeData} labelLocation='top'>
+                        <Item dataField='tradeType' />
+                        <Item dataField='bankRoll' validationRules={validationRules.bankRoll} />
+                        <Item dataField='risk%' validationRules={validationRules['risk%']} />
+                        <Item dataField='entryPrice' validationRules={validationRules.entryPrice} />
+                        <Item dataField='stopLoss' validationRules={validationRules.stopLoss} />
+                        <Item
+                           dataField='targetPrice'
+                           validationRules={validationRules.targetPrice}
+                        />
+
+                        <div className='dx-fieldset'>
+                           <Button id='button' text='Register' type='success' />
+                        </div>
+                     </Form>
+                  </Col>
+               </Row>
+               <Row style={{ marginTop: '15px' }}>
+                  <Col>
+                     <div>
+                        <p style={{ marginBottom: '5px', fontWeight: 'bold' }}>
+                           {`Position Size: ${positionSize}`}
+                        </p>
+                     </div>
+                  </Col>
+               </Row>
+               <Row
+                  style={{
+                     justifyContent: 'flex-end',
+                     marginTop: '15px',
+                     marginBottom: '15px'
+                  }}
+               >
+                  <Col xs='auto'>
+                     <Button id='button' text='Calculate' type='success' onClick={handleClick} />
+                  </Col>
+               </Row>
+            </Col>
+         </Row>
+      </Container>
+   );
 };
 
 export default App;
