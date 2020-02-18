@@ -22,7 +22,6 @@ export default class TradeCalculator {
    /**
     * @param {number} entry - The entry price of the trade.
     * @param {numbet} stopLoss - The stop loss of the tradr.
-    *
     * Returns the percent change from the entry price to the stop loss price.
     */
    static calculatePercentChange = (entry: number, stopLoss: number): number => {
@@ -30,6 +29,7 @@ export default class TradeCalculator {
       if (entry < 0 || stopLoss < 0) throw new Error('Value cannot be negative.');
 
       if (stopLoss > entry) return ((stopLoss - entry) / stopLoss) * 100;
+
       return ((entry - stopLoss) / entry) * 100;
    };
 }
