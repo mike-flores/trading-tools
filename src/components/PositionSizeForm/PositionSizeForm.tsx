@@ -79,14 +79,10 @@ const PositionSizeForm: React.FC = () => {
          <Card id='position-size-form__results' bg='warning' text='white'>
             <Card.Header>Results</Card.Header>
             <Card.Body>
-               <Card.Text>
-                  <p>
-                     Position Size:
-                     <span data-testid='position-size-form__output-position-size'>
-                        {positionSize}
-                     </span>
-                  </p>
-               </Card.Text>
+               <p>
+                  Position Size:
+                  <span data-testid='position-size-form__output-position-size'>{positionSize}</span>
+               </p>
             </Card.Body>
          </Card>
       </>
