@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Form, SimpleItem, ButtonItem, RequiredRule } from 'devextreme-react/form';
-import { Button, NumberBox, Validator } from 'devextreme-react';
-import ValidationGroup from 'devextreme-react/validation-group';
 import { Card } from 'react-bootstrap';
 import TradeCalculator from '../../helpers/tradeCalculator/TradeCalculator';
 
