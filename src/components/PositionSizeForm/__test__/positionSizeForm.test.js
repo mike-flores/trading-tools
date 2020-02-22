@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { render, cleanup, waitForElement } from '@testing-library/react';
+import { render, cleanup, wait } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
 import PositionSizeForm from '../PositionSizeForm';
@@ -19,11 +19,12 @@ describe('PositionSizeForm', () => {
 
    const buttonCalculate = 'position-size-form__button-calculate';
 
+   const inputBankRoll = 'position-size-form__input-bankroll';
    const inputEntryPrice = 'position-size-form__input-entry-price';
    const inputStopLoss = 'position-size-form__input-stop-loss';
    const inputRiskPercent = 'position-size-form__input-risk-percent';
 
-   const numberInputs = [inputEntryPrice, inputStopLoss, inputRiskPercent];
+   const numberInputs = [inputBankRoll, inputEntryPrice, inputStopLoss, inputRiskPercent];
    const inputs = [...numberInputs];
 
    it('renders without crashing', () => {
@@ -43,7 +44,7 @@ describe('PositionSizeForm', () => {
 
       it('should have empty input fields', () => {
          inputs.forEach(element => {
-            expect(wrapper.getByTestId(element)).toHaveValue('');
+            expect(wrapper.getByTestId(element)).toHaveAttribute('aria-valuenow', '');
          });
       });
    });
@@ -60,7 +61,7 @@ describe('PositionSizeForm', () => {
          });
          afterEach(cleanup);
 
-         it('should update the value', () => {
+         it('should update the value in numberbox', () => {
             inputs.forEach(element => {
                expect(wrapper.getByTestId(element)).toHaveAttribute('aria-valuenow', '98');
             });
@@ -78,11 +79,11 @@ describe('PositionSizeForm', () => {
          });
          afterEach(cleanup);
 
-         it('should default the value to the min', () => {
+         it('should default the value to the min but it really does not allow a negative input so it would be blank in the numberbox', () => {
             // setting the value behind the scenes causes the component to set a
             // negative number to the min, but in the actual interface, a negative number isn't even typable.
             numberInputs.forEach(element => {
-               expect(wrapper.getByTestId(element)).toHaveAttribute('aria-valuenow', risk.MIN);
+               expect(wrapper.getByTestId(element)).toHaveAttribute('aria-valuenow', '1');
             });
          });
       });
@@ -99,12 +100,12 @@ describe('PositionSizeForm', () => {
          afterEach(cleanup);
          it('should not update the value', () => {
             numberInputs.forEach(element => {
-               expect(wrapper.getByTestId(element)).toHaveValue('');
+               expect(wrapper.getByTestId(element)).toHaveAttribute('aria-valuenow', '');
             });
          });
       });
 
-      describe('when a number greater than 100 is evneted into the risk numberbox', () => {
+      describe('when a number greater than 100 is entered into the risk numberbox', () => {
          beforeEach(() => {
             act(() => {
                wrapper = render(<PositionSizeForm />);
@@ -131,16 +132,14 @@ describe('PositionSizeForm', () => {
       afterEach(cleanup);
 
       it('should show validation errors on the empty required fields', async () => {
-         let validationDiv = await waitForElement(() =>
-            wrapper.getByText('Entry price is required.')
+         await wait(() => expect(wrapper.getByText('Bank roll is required.')).toBeInTheDocument());
+         await wait(() =>
+            expect(wrapper.getByText('Entry price is required.')).toBeInTheDocument()
          );
-         expect(validationDiv).toHaveTextContent('Entry price is required.');
-
-         validationDiv = await waitForElement(() => wrapper.getByText('Stop loss is required.'));
-         expect(validationDiv).toHaveTextContent('Stop loss is required.');
-
-         validationDiv = await waitForElement(() => wrapper.getByText('Risk % is required.'));
-         expect(validationDiv).toHaveTextContent('Risk % is required.');
+         await wait(() => expect(wrapper.getByText('Stop loss is required.')).toBeInTheDocument());
+         await wait(() =>
+            expect(wrapper.getByText('Risk percent is required.')).toBeInTheDocument()
+         );
       });
 
       it('should show no values for the outputs in the trade calculation results', () => {
@@ -150,17 +149,28 @@ describe('PositionSizeForm', () => {
       });
    });
 
-   describe('when the calculate button is clicked and all the required fields have valid input', () => {
+   describe('when the calculate button is clicked and all the required fields are valid', () => {
       beforeEach(() => {
          act(() => {
             wrapper = render(<PositionSizeForm />);
+            userEvent.type(wrapper.getByTestId(inputBankRoll), '1000');
+
+            userEvent.type(wrapper.getByTestId(inputEntryPrice), '100');
+            userEvent.type(wrapper.getByTestId(inputStopLoss), '95');
+            userEvent.type(wrapper.getByTestId(inputRiskPercent), '2');
             userEvent.click(wrapper.getByTestId(buttonCalculate));
          });
       });
       afterEach(cleanup);
 
-      it('should calculate the trade position size', async () => {});
-
-      it('should show the position size output result', () => {});
+      it('should show the position size output result', async () => {
+         expect(wrapper.getByTestId(positionSizeOutput)).toHaveTextContent('400');
+      });
+      it('should retain the values in the fields', () => {
+         expect(wrapper.getByTestId(inputBankRoll)).toHaveAttribute('aria-valuenow', '1000');
+         expect(wrapper.getByTestId(inputEntryPrice)).toHaveAttribute('aria-valuenow', '100');
+         expect(wrapper.getByTestId(inputStopLoss)).toHaveAttribute('aria-valuenow', '95');
+         expect(wrapper.getByTestId(inputRiskPercent)).toHaveAttribute('aria-valuenow', '2');
+      });
    });
 });

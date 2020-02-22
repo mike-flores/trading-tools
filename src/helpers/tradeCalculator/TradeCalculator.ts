@@ -21,7 +21,7 @@ export default class TradeCalculator {
 
    /**
     * @param {number} entry - The entry price of the trade.
-    * @param {numbet} stopLoss - The stop loss of the tradr.
+    * @param {numbet} stopLoss - The stop loss of the trade.
     * Returns the percent change from the entry price to the stop loss price.
     */
    static calculatePercentChange = (entry: number, stopLoss: number): number => {

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Form, SimpleItem, ButtonItem, RequiredRule } from 'devextreme-react/form';
+import { Button, NumberBox, Validator } from 'devextreme-react';
+import ValidationGroup from 'devextreme-react/validation-group';
 import { Card } from 'react-bootstrap';
-// import { calculatePercentChange, calculatePositionSize } from '../../helpers/tradeCalculator';
+import TradeCalculator from '../../helpers/tradeCalculator/TradeCalculator';
 
 // eslint-disable-next-line import/no-unresolved
 import './_positionSizeForm.scss';
@@ -9,67 +11,98 @@ import './_positionSizeForm.scss';
 const commonNumberOptions = {
    min: 1,
    mode: 'number',
-   format: '#',
-   valueChangeEvent: 'keyup'
+   valueChangeEvent: 'input'
 };
 
 const PositionSizeForm: React.FC = () => {
-   const [entryPrice, setEntryPrice] = useState<number | null>(null);
-   const [stopLoss, setStopLoss] = useState<number | null>(null);
-   const [riskPercent, setRiskPercent] = useState<number | null>(null);
-   const [positionSize] = useState<number | null>(null);
+   const [positionSize, setPositionSize] = useState();
+
+   const [tradeData] = useState({
+      bankRoll: '',
+      entryPrice: '',
+      stopLoss: '',
+      riskPercent: ''
+   });
+
+   const handleCalculate = (event: any): void => {
+      const { bankRoll, entryPrice, stopLoss, riskPercent } = tradeData;
+
+      const result = event.validationGroup.validate();
+      if (result.isValid) {
+         const change = TradeCalculator.calculatePercentChange(
+            parseInt(entryPrice),
+            parseInt(stopLoss)
+         );
+         const size = TradeCalculator.Cash.calculatePositionSize(
+            parseInt(riskPercent),
+            change,
+            parseInt(bankRoll)
+         );
+         setPositionSize(size);
+      }
+   };
 
    return (
       <>
-         <Form labelLocation='top' id='position-size-form__form'>
+         <Form id='position-size-form__form' formData={tradeData}>
             <SimpleItem
-               dataField='Entry Price'
+               dataField='bankRoll'
                editorType='dxNumberBox'
                editorOptions={{
                   ...commonNumberOptions,
+                  defaultValue: 11,
+                  inputAttr: {
+                     'data-testid': 'position-size-form__input-bankroll'
+                  }
+               }}
+            >
+               <RequiredRule message='Bank roll is required.' />
+            </SimpleItem>
+            <SimpleItem
+               dataField='entryPrice'
+               editorType='dxNumberBox'
+               editorOptions={{
+                  ...commonNumberOptions,
+                  defaultValue: 200,
                   inputAttr: {
                      'data-testid': 'position-size-form__input-entry-price'
-                  },
-                  value: entryPrice,
-                  onValueChanged: (event: any) => setEntryPrice(event.value)
+                  }
                }}
             >
                <RequiredRule message='Entry price is required.' />
             </SimpleItem>
             <SimpleItem
-               dataField='Stop Loss'
+               dataField='stopLoss'
                editorType='dxNumberBox'
                editorOptions={{
                   ...commonNumberOptions,
                   inputAttr: {
                      'data-testid': 'position-size-form__input-stop-loss'
-                  },
-                  value: stopLoss,
-                  onValueChanged: (event: any) => setStopLoss(event.value)
+                  }
                }}
             >
                <RequiredRule message='Stop loss is required.' />
             </SimpleItem>
             <SimpleItem
-               dataField='Risk %'
+               dataField='riskPercent'
                editorType='dxNumberBox'
                editorOptions={{
                   ...commonNumberOptions,
+                  max: 100,
                   inputAttr: {
-                     'data-testid': 'position-size-form__input-risk-percent'
-                  },
-                  value: riskPercent,
-                  onValueChanged: (event: any) => setRiskPercent(event.value),
-                  max: 100
+                     'data-testid': 'position-size-form__input-risk-percent',
+                     placeholder: ''
+                  }
                }}
             >
-               <RequiredRule message='Risk % is required.' />
+               <RequiredRule message='Risk percent is required.' />
             </SimpleItem>
             <ButtonItem
                buttonOptions={{
-                  text: 'Calculate',
                   type: 'success',
-                  useSubmitBehavior: true,
+                  text: 'Calculate',
+                  onClick: handleCalculate,
+                  // useSubmitBehavior: true,
                   elementAttr: {
                      'data-testid': 'position-size-form__button-calculate'
                   }
