@@ -25,7 +25,6 @@ const PositionSizeForm: React.FC = () => {
 
    const handleCalculate = (event: any): void => {
       const { bankRoll, entryPrice, stopLoss, riskPercent } = tradeData;
-      console.log('the data', tradeData);
       const result = event.validationGroup.validate();
       if (result.isValid) {
          const change = TradeCalculator.calculatePercentChange(
@@ -38,9 +37,7 @@ const PositionSizeForm: React.FC = () => {
             change,
             parseFloat(bankRoll)
          );
-         console.log('size', size);
          setPositionSize(size);
-         console.log('psize', positionSize);
       }
    };
 
