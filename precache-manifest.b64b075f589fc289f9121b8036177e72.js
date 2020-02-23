@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "61a0e82cbe2fff38359f3f3f2316900b",
+    "revision": "53c1731b05f22c2b5ed4686ce893f399",
     "url": "/trading-tools/index.html"
   },
   {
-    "revision": "a5e673641c35cc730256",
-    "url": "/trading-tools/static/css/2.ba066021.chunk.css"
+    "revision": "96a680324f3dccbba4c1",
+    "url": "/trading-tools/static/css/2.07a985af.chunk.css"
   },
   {
-    "revision": "2fd54921c1e6063981b0",
+    "revision": "5d19634214604992fcbd",
     "url": "/trading-tools/static/css/main.3c45af5a.chunk.css"
   },
   {
-    "revision": "a5e673641c35cc730256",
-    "url": "/trading-tools/static/js/2.ac9bcfdc.chunk.js"
+    "revision": "96a680324f3dccbba4c1",
+    "url": "/trading-tools/static/js/2.4936bdcb.chunk.js"
   },
   {
     "revision": "0298da7a024cb8d6fcf330550f72ec21",
-    "url": "/trading-tools/static/js/2.ac9bcfdc.chunk.js.LICENSE.txt"
+    "url": "/trading-tools/static/js/2.4936bdcb.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "2fd54921c1e6063981b0",
-    "url": "/trading-tools/static/js/main.092a47c4.chunk.js"
+    "revision": "5d19634214604992fcbd",
+    "url": "/trading-tools/static/js/main.77add171.chunk.js"
   },
   {
     "revision": "43c49955176d25e79098",

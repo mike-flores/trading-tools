@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/trading-tools/static/css/main.3c45af5a.chunk.css",
-    "main.js": "/trading-tools/static/js/main.092a47c4.chunk.js",
-    "main.js.map": "/trading-tools/static/js/main.092a47c4.chunk.js.map",
+    "main.js": "/trading-tools/static/js/main.77add171.chunk.js",
+    "main.js.map": "/trading-tools/static/js/main.77add171.chunk.js.map",
     "runtime-main.js": "/trading-tools/static/js/runtime-main.18c7c20e.js",
     "runtime-main.js.map": "/trading-tools/static/js/runtime-main.18c7c20e.js.map",
-    "static/css/2.ba066021.chunk.css": "/trading-tools/static/css/2.ba066021.chunk.css",
-    "static/js/2.ac9bcfdc.chunk.js": "/trading-tools/static/js/2.ac9bcfdc.chunk.js",
-    "static/js/2.ac9bcfdc.chunk.js.map": "/trading-tools/static/js/2.ac9bcfdc.chunk.js.map",
+    "static/css/2.07a985af.chunk.css": "/trading-tools/static/css/2.07a985af.chunk.css",
+    "static/js/2.4936bdcb.chunk.js": "/trading-tools/static/js/2.4936bdcb.chunk.js",
+    "static/js/2.4936bdcb.chunk.js.map": "/trading-tools/static/js/2.4936bdcb.chunk.js.map",
     "index.html": "/trading-tools/index.html",
-    "precache-manifest.fcfbba7c7564a0482f8550566a9b52a4.js": "/trading-tools/precache-manifest.fcfbba7c7564a0482f8550566a9b52a4.js",
+    "precache-manifest.b64b075f589fc289f9121b8036177e72.js": "/trading-tools/precache-manifest.b64b075f589fc289f9121b8036177e72.js",
     "service-worker.js": "/trading-tools/service-worker.js",
-    "static/css/2.ba066021.chunk.css.map": "/trading-tools/static/css/2.ba066021.chunk.css.map",
+    "static/css/2.07a985af.chunk.css.map": "/trading-tools/static/css/2.07a985af.chunk.css.map",
     "static/css/main.3c45af5a.chunk.css.map": "/trading-tools/static/css/main.3c45af5a.chunk.css.map",
-    "static/js/2.ac9bcfdc.chunk.js.LICENSE.txt": "/trading-tools/static/js/2.ac9bcfdc.chunk.js.LICENSE.txt",
+    "static/js/2.4936bdcb.chunk.js.LICENSE.txt": "/trading-tools/static/js/2.4936bdcb.chunk.js.LICENSE.txt",
     "static/media/dx.light.css": "/trading-tools/static/media/dxicons.2b145cef.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.18c7c20e.js",
-    "static/css/2.ba066021.chunk.css",
-    "static/js/2.ac9bcfdc.chunk.js",
+    "static/css/2.07a985af.chunk.css",
+    "static/js/2.4936bdcb.chunk.js",
     "static/css/main.3c45af5a.chunk.css",
-    "static/js/main.092a47c4.chunk.js"
+    "static/js/main.77add171.chunk.js"
   ]
 }
