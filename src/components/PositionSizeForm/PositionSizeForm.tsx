@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, SimpleItem, ButtonItem, RequiredRule } from 'devextreme-react/form';
+import { NumberBox } from 'devextreme-react/number-box';
 import { Card } from 'react-bootstrap';
 import TradeCalculator from '../../helpers/tradeCalculator/TradeCalculator';
 
@@ -7,8 +8,8 @@ import TradeCalculator from '../../helpers/tradeCalculator/TradeCalculator';
 import './_positionSizeForm.scss';
 
 const commonNumberOptions = {
-   min: 1,
-   mode: 'number',
+   min: 0,
+
    valueChangeEvent: 'input'
 };
 
@@ -24,19 +25,22 @@ const PositionSizeForm: React.FC = () => {
 
    const handleCalculate = (event: any): void => {
       const { bankRoll, entryPrice, stopLoss, riskPercent } = tradeData;
-
+      console.log('the data', tradeData);
       const result = event.validationGroup.validate();
       if (result.isValid) {
          const change = TradeCalculator.calculatePercentChange(
             parseInt(entryPrice),
             parseInt(stopLoss)
          );
+
          const size = TradeCalculator.Cash.calculatePositionSize(
-            parseInt(riskPercent),
+            parseFloat(riskPercent).toFixed(2),
             change,
-            parseInt(bankRoll)
+            parseFloat(bankRoll)
          );
+         console.log('size', size);
          setPositionSize(size);
+         console.log('psize', positionSize);
       }
    };
 
@@ -48,7 +52,8 @@ const PositionSizeForm: React.FC = () => {
                editorType='dxNumberBox'
                editorOptions={{
                   ...commonNumberOptions,
-                  defaultValue: 11,
+                  format: { type: 'currency', currency: 'BTC', precision: 9 },
+
                   inputAttr: {
                      'data-testid': 'position-size-form__input-bankroll'
                   }
@@ -61,6 +66,8 @@ const PositionSizeForm: React.FC = () => {
                editorType='dxNumberBox'
                editorOptions={{
                   ...commonNumberOptions,
+                  format: { type: 'currency', currency: 'USD', precision: 1 },
+
                   defaultValue: 200,
                   inputAttr: {
                      'data-testid': 'position-size-form__input-entry-price'
@@ -74,6 +81,8 @@ const PositionSizeForm: React.FC = () => {
                editorType='dxNumberBox'
                editorOptions={{
                   ...commonNumberOptions,
+                  format: { type: 'currency', currency: 'USD', precision: 1 },
+
                   inputAttr: {
                      'data-testid': 'position-size-form__input-stop-loss'
                   }
@@ -86,7 +95,9 @@ const PositionSizeForm: React.FC = () => {
                editorType='dxNumberBox'
                editorOptions={{
                   ...commonNumberOptions,
-                  max: 100,
+                  format: { type: 'percent', precision: 1 },
+                  min: 0.01,
+                  max: 1,
                   inputAttr: {
                      'data-testid': 'position-size-form__input-risk-percent',
                      placeholder: ''
@@ -97,6 +108,7 @@ const PositionSizeForm: React.FC = () => {
             </SimpleItem>
             <ButtonItem
                buttonOptions={{
+                  ...commonNumberOptions,
                   type: 'success',
                   text: 'Calculate',
                   onClick: handleCalculate,
@@ -110,10 +122,18 @@ const PositionSizeForm: React.FC = () => {
          <Card id='position-size-form__results' bg='warning' text='white'>
             <Card.Header>Results</Card.Header>
             <Card.Body>
-               <p>
-                  Position Size:
-                  <span data-testid='position-size-form__output-position-size'>{positionSize}</span>
-               </p>
+               Position Size:
+               <NumberBox
+                  format={{ type: 'currency', currency: 'BTC', precision: 9 }}
+                  readOnly
+                  value={positionSize}
+                  style={{
+                     background: 'transparent',
+                     display: 'inline-block',
+                     border: 'none',
+                     color: 'white'
+                  }}
+               />
             </Card.Body>
          </Card>
       </>

@@ -4,18 +4,20 @@
 export default class TradeCalculator {
    static Cash = {
       /**
-       * @param {number} risk - The risk percent.
+       * @param {number} risk - The risk percent as a decimal.
        * @param {number} percentChange - The percent change from entry to stop loss.
        * @param {number} bankRoll - The total amount in the trading account.
        * Returns the position size for a trade.
        */
-      calculatePositionSize(risk: number, percentChange: number, bankRoll: number): number {
-         if (risk === 0 || percentChange === 0 || bankRoll === 0)
-            throw new Error('Value cannot be 0.');
-         if (risk < 0 || percentChange < 0 || bankRoll <= 0)
-            throw new Error('Value cannot be negative.');
+      calculatePositionSize(risk: any, percentChange: number, bankRoll: number): number {
+         if (risk === 0) throw new Error(`Risk cannot be 0.`);
+         if (percentChange === 0) throw new Error(`Percent change cannot be 0.`);
+         if (bankRoll === 0) throw new Error(`Bank roll cannot be 0.`);
+         if (risk < 0) throw new Error('risk cannot be negative.');
+         if (percentChange < 0) throw new Error('Percent change cannot be negative.');
+         if (bankRoll <= 0) throw new Error('Bank roll cannot be negative.');
 
-         return (risk / percentChange) * bankRoll;
+         return ((risk * 100) / percentChange) * bankRoll;
       }
    };
 
