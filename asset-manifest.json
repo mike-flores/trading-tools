@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/trading-tools/static/css/main.d1b05096.chunk.css",
-    "main.js": "/trading-tools/static/js/main.2efe0186.chunk.js",
-    "main.js.map": "/trading-tools/static/js/main.2efe0186.chunk.js.map",
+    "main.css": "/trading-tools/static/css/main.3c45af5a.chunk.css",
+    "main.js": "/trading-tools/static/js/main.092a47c4.chunk.js",
+    "main.js.map": "/trading-tools/static/js/main.092a47c4.chunk.js.map",
     "runtime-main.js": "/trading-tools/static/js/runtime-main.18c7c20e.js",
     "runtime-main.js.map": "/trading-tools/static/js/runtime-main.18c7c20e.js.map",
-    "static/css/2.8ef06729.chunk.css": "/trading-tools/static/css/2.8ef06729.chunk.css",
-    "static/js/2.bc8d10b1.chunk.js": "/trading-tools/static/js/2.bc8d10b1.chunk.js",
-    "static/js/2.bc8d10b1.chunk.js.map": "/trading-tools/static/js/2.bc8d10b1.chunk.js.map",
+    "static/css/2.ba066021.chunk.css": "/trading-tools/static/css/2.ba066021.chunk.css",
+    "static/js/2.ac9bcfdc.chunk.js": "/trading-tools/static/js/2.ac9bcfdc.chunk.js",
+    "static/js/2.ac9bcfdc.chunk.js.map": "/trading-tools/static/js/2.ac9bcfdc.chunk.js.map",
     "index.html": "/trading-tools/index.html",
-    "precache-manifest.95fc3eb3db2e57998f2a065a41d92eae.js": "/trading-tools/precache-manifest.95fc3eb3db2e57998f2a065a41d92eae.js",
+    "precache-manifest.fcfbba7c7564a0482f8550566a9b52a4.js": "/trading-tools/precache-manifest.fcfbba7c7564a0482f8550566a9b52a4.js",
     "service-worker.js": "/trading-tools/service-worker.js",
-    "static/css/2.8ef06729.chunk.css.map": "/trading-tools/static/css/2.8ef06729.chunk.css.map",
-    "static/css/main.d1b05096.chunk.css.map": "/trading-tools/static/css/main.d1b05096.chunk.css.map",
-    "static/js/2.bc8d10b1.chunk.js.LICENSE.txt": "/trading-tools/static/js/2.bc8d10b1.chunk.js.LICENSE.txt",
+    "static/css/2.ba066021.chunk.css.map": "/trading-tools/static/css/2.ba066021.chunk.css.map",
+    "static/css/main.3c45af5a.chunk.css.map": "/trading-tools/static/css/main.3c45af5a.chunk.css.map",
+    "static/js/2.ac9bcfdc.chunk.js.LICENSE.txt": "/trading-tools/static/js/2.ac9bcfdc.chunk.js.LICENSE.txt",
     "static/media/dx.light.css": "/trading-tools/static/media/dxicons.2b145cef.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.18c7c20e.js",
-    "static/css/2.8ef06729.chunk.css",
-    "static/js/2.bc8d10b1.chunk.js",
-    "static/css/main.d1b05096.chunk.css",
-    "static/js/main.2efe0186.chunk.js"
+    "static/css/2.ba066021.chunk.css",
+    "static/js/2.ac9bcfdc.chunk.js",
+    "static/css/main.3c45af5a.chunk.css",
+    "static/js/main.092a47c4.chunk.js"
   ]
 }
