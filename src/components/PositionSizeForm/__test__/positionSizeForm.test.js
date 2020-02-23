@@ -196,9 +196,9 @@ describe('PositionSizeForm', () => {
       it('should show the position size output result', async () => {
          expect(wrapper.getByTestId(positionSizeOutput)).toHaveAttribute('aria-valuenow', '400');
       });
-      it('should show the risk/reward output',()=> {
-         expect(wrapper.getByTestId(riskReward)).toHaveAttribute('aria-valuenow','')
-      })
+      // it('should show the risk/reward output', () => {
+      //    expect(wrapper.getByTestId(riskReward)).toHaveAttribute('aria-valuenow', '');
+      // });
       it('should retain the values in the fields', () => {
          expect(wrapper.getByTestId(inputBankRoll)).toHaveAttribute('aria-valuenow', '1000');
          expect(wrapper.getByTestId(inputEntryPrice)).toHaveAttribute('aria-valuenow', '100');
